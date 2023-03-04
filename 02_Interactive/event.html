@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖形跟隨鼠標移動</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+      
+        // 繪製一個圓形
+        ctx.beginPath();
+        ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+      
+        // 監聽鼠標移動事件
+        canvas.addEventListener("mousemove", (event) => {
+          // 清空畫布
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+          // 繪製圓形
+          ctx.beginPath();
+          ctx.arc(event.clientX, event.clientY, 50, 0, 2 * Math.PI);
+          ctx.fillStyle = "#0095DD";
+          ctx.fill();
+        });
+      </script>
+</body>
+</html>

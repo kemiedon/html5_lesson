@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <button id="scaleBtn">縮放</button>
+    <button id="rotateBtn">旋轉</button>
+    <button id="translateBtn">平移</button>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // 繪製一個矩形
+        ctx.fillStyle = "#0095DD";
+        ctx.fillRect(50, 50, 100, 100);
+
+        // 縮放、旋轉、平移的初始值
+        let scaleX = 1;
+        let scaleY = 1;
+        let angle = 0;
+        let translateX = 0;
+        let translateY = 0;
+
+        // 縮放按鈕的監聽器
+        const scaleBtn = document.getElementById("scaleBtn");
+        scaleBtn.addEventListener("click", () => {
+            // 清空畫布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 繪製矩形
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.scale(scaleX, scaleY);
+            ctx.rotate(angle);
+            ctx.translate(translateX, translateY);
+            ctx.fillStyle = "#0095DD";
+            ctx.fillRect(-50, -50, 100, 100);
+            ctx.restore();
+
+            // 縮放操作
+            scaleX += 0.1;
+            scaleY += 0.1;
+            if (scaleX > 2) {
+                scaleX = 1;
+                scaleY = 1;
+            }
+        });
+
+        // 旋轉按鈕的監聽器
+        const rotateBtn = document.getElementById("rotateBtn");
+        rotateBtn.addEventListener("click", () => {
+            // 清空畫布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 繪製矩形
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.scale(scaleX, scaleY);
+            ctx.rotate(angle);
+            ctx.translate(translateX, translateY);
+            ctx.fillStyle = "#0095DD";
+            ctx.fillRect(-50, -50, 100, 100);
+            ctx.restore();
+
+            // 旋轉操作
+            angle += Math.PI / 4;
+            if (angle >= 2 * Math.PI) {
+                angle = 0;
+            }
+        });
+
+        // 平移按鈕的監聽器
+        const translateBtn = document.getElementById("translateBtn");
+        translateBtn.addEventListener("click", () => {
+            // 清空畫布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 繪製矩形
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.scale(scaleX, scaleY);
+            ctx.rotate(angle);
+            ctx.translate(translateX, translateY);
+            ctx.fillStyle = "#0095DD";
+            ctx.fillRect(-50, -50, 100, 100);
+            ctx.restore();
+            // 平移操作
+            translateX += 10;
+            translateY += 10;
+            if (translateX > 50) {
+                translateX = 0;
+                translateY = 0;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

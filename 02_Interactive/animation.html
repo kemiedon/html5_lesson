@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移動動畫效果</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let x = 0;
+
+        function draw() {
+            // 清空畫布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 繪製圖形
+            ctx.beginPath();
+            ctx.arc(x, 200, 30, 0, 2 * Math.PI);
+            ctx.fillStyle = "#faf";
+            ctx.fill();
+
+            // 繪製文本
+            ctx.font = "30px Arial";
+            ctx.fillStyle = "#0095DD";
+            ctx.fillText("Hello, world!", x, 300);
+
+            // 更新x的值
+            x += 5;
+
+            // 使用requestAnimationFrame函數實現動畫效果
+            requestAnimationFrame(draw);
+        }
+
+        // 啟動動畫
+        draw();
+    </script>
+</body>
+
+</html>
