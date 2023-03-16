@@ -1,99 +1,83 @@
-$(function () {
-    // 宣告變數
-    var canvas = $('#canvas')[0];
-    var ctx = canvas.getContext('2d');
-    var undoStack = [];
-    var redoStack = [];
-    var isDrawing = false;
-    var lastX, lastY;
-    var color = '#000';
+// 建立一個變數來表示畫布
+var canvas = $('#canvas')[0];
+console.log(canvas);
+// 設置畫布的寬度和高度
+canvas.width = 800;
+canvas.height = 600;
 
-    // 設定初始顏色
-    $('.color-button.active').css('border', '2px solid #fff');
+// 獲取上下文
+var ctx = canvas.getContext('2d');
 
-    // 設定canvas寬度與高度
-    canvas.width = $('#canvas').parent().width() - 40;
-    canvas.height = $('#canvas').parent().height() - 120;
+// 畫筆的屬性
+var lineWidth = 5;
+var strokeStyle = 'red';
 
-    // 畫筆事件
-    $('#canvas').mousedown(function (e) {
-        isDrawing = true;
-        lastX = e.offsetX;
-        lastY = e.offsetY;
-    });
+// 記錄繪製線條的最後一個位置
+var lastX, lastY;
 
-    $('#canvas').mousemove(function (e) {
-        if (!isDrawing) return;
-        drawLine(lastX, lastY, e.offsetX, e.offsetY);
-        lastX = e.offsetX;
-        lastY = e.offsetY;
-    });
+// 畫布是否正在繪製線條
+var isDrawing = false;
 
-    $('#canvas').mouseup(function () {
-        isDrawing = false;
-        saveToUndoStack();
-    });
-
-    $('#canvas').mouseleave(function () {
-        isDrawing = false;
-        saveToUndoStack();
-    });
-
-    // 清除事件
-    $('#clear-button').click(function () {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        undoStack = [];
-        redoStack = [];
-    });
-
-    // 撤銷事件
-    $('#undo-button').click(function () {
-        if (undoStack.length === 0) return;
-        var lastItem = undoStack.pop();
-        redoStack.push(lastItem);
-        restoreCanvas(lastItem);
-    });
-
-    // 恢復事件
-    $('#redo-button').click(function () {
-        if (redoStack.length === 0) return;
-        var lastItem = redoStack.pop();
-        undoStack.push(lastItem);
-        restoreCanvas(lastItem);
-    });
-
-    // 顏色選擇事件
-    $('.color-button').click(function () {
-        if ($(this).hasClass('active')) {
-            return;
-        }
-        $('.color-button.active').removeClass('active').css('border', 'none');
-        $(this).addClass('active').css('border', '2px solid #fff');
-        color = $(this).css('background-color');
-    });
+// 繪製線條函數
+function drawLine(x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = strokeStyle;
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.closePath();
+}
 
 
-    // 畫線函數
-    function drawLine(x1, y1, x2, y2) {
-        ctx.beginPath();
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 5;
-        ctx.lineCap = 'round';
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-        ctx.closePath();
-    }
+// 監聽滑鼠事件
+$('#canvas').mousedown(function (e) {
+    // 當滑鼠按下時，開始繪製線條
+    isDrawing = true;
+    lastX = e.pageX - $("#canvas").offset().left;
+    lastY = e.pageY - $("#canvas").offset().top;
+});
 
-    // 將canvas畫面存入undo stack
-    function saveToUndoStack() {
-        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        undoStack.push(imageData);
-        redoStack = [];
-    }
+$('#canvas').mousemove(function (e) {
+    if (!isDrawing) return;
 
-    // 還原canvas畫面
-    function restoreCanvas(imageData) {
-        ctx.putImageData(imageData, 0, 0);
-    }
+    // 繪製線條
+    let mouseX = e.pageX - $("#canvas").offset().left;
+    let mouseY = e.pageY - $("#canvas").offset().top;
+    drawLine(lastX, lastY, mouseX, mouseY, lineWidth, strokeStyle);
+    // 更新最後位置
+    lastX = mouseX;
+    lastY = mouseY;
+    
+
+});
+
+$('#canvas').mouseup(function () {
+    // 當滑鼠放開時，停止繪製線條
+    isDrawing = false;
+});
+
+$('#canvas').mouseleave(function () {
+    // 當滑鼠移出畫布時，停止繪製線條
+    isDrawing = false;
+});
+// 顏色按鈕點擊事件
+$('.color-button').click(function () {
+    // 將當前按鈕設為 active，其他按鈕設為非 active
+    $(this).addClass('active').siblings().removeClass('active');
+    // 獲取選擇的顏色
+    strokeStyle = $(this).css('background-color');
+});
+// 筆刷大小按鈕點擊事件
+$('.size-button').click(function () {
+    // 將當前按鈕設為 active，其他按鈕設為非 active
+    $(this).addClass('active').siblings().removeClass('active');
+    // 獲取選擇的筆刷大小
+    lineWidth = $(this).data('size');
+});
+
+// 監聽清除畫布按鈕的點擊事件
+$('#clear').click(function () {
+    // 清空畫布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 });

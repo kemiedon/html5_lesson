@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Draw Board</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-        integrity="sha384-D5J5R5G5hhrnP3JOYz5Ovx63eVJjlDGSBqLIJ48vX9zC4bN4DkZt+YAYw1bjfuwS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/drawboard.css">
 
 </head>
@@ -17,9 +16,9 @@
         <canvas id="canvas"></canvas>
     </div>
     <div class="tool-container">
-        <a class="tool-button" id="undo-button"><i class="fas fa-undo"></i> 返回上一步</a>
-        <a class="tool-button" id="redo-button"><i class="fas fa-redo"></i> 重做</a>
-        <a class="tool-button" id="clear-button"><i class="fas fa-trash-alt"></i> 清除</a>
+        <div id="controls">
+            <button class="tool-button" id="clear"><i class="fas fa-trash-alt"></i> 清除</button>
+        </div>
         <div class="color-container">
             <div class="color-button red active"></div>
             <div class="color-button blue"></div>
@@ -29,6 +28,13 @@
             <div class="color-button purple"></div>
             <div class="color-button gray"></div>
 
+        </div>
+        <div class="color-container">
+            <div class="size-button size-1 active" data-size="1"></div>
+            <div class="size-button size-2" data-size="2"></div>
+            <div class="size-button size-3" data-size="4"></div>
+            <div class="size-button size-4" data-size="6"></div>
+            <div class="size-button size-5" data-size="10"></div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
