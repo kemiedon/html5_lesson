@@ -6,13 +6,13 @@ $(function () {
     var lastX, lastY;
     var color = '#000';
 
-    // 設定初始顏色
-    $('.color-button.active').css('border', '2px solid #fff');
+    // 獲取上下文
+    var ctx = canvas.getContext('2d');
 
     // 設定canvas寬度與高度
     canvas.width = $('#canvas').outerWidth();
     canvas.height = $('#canvas').outerHeight();
-    
+
     // 畫筆事件
     $('#canvas').mousedown(function (e) {
         isDrawing = true;
@@ -20,15 +20,6 @@ $(function () {
         lastY = e.pageY - this.offsetTop;
         console.log(lastX);
     });
-
-    $('#canvas').mousemove(function (e) {
-        if (!isDrawing) return;
-        drawLine(lastX, lastY, e.offsetX, e.offsetY);
-        lastX = e.offsetX;
-        lastY = e.offsetY;
-    });
-
-
     // 清除事件
     $('#clear-button').click(function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -51,18 +42,14 @@ $(function () {
     });
 
 
-    // 畫線函數
-    function drawLine(x1, y1, x2, y2) {
-        ctx.beginPath();
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 5;
-        ctx.lineCap = 'round';
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-        ctx.closePath();
-    }
+    // 監聽滑鼠事件
+    $('#canvas').mousedown(function (e) {
+        // 當滑鼠按下時，開始繪製線條
+        isDrawing = true;
+        lastX = e.pageX - $("#canvas").offset().left;
+        lastY = e.pageY - $("#canvas").offset().top;
+    });
 
-    
+
 
 });
