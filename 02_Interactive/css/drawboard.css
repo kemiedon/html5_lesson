@@ -21,21 +21,25 @@
   }
   
   .tool-button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    background-color: #007bff;
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  #clear-button {
+    background: linear-gradient(to bottom right, #56ab2f, #a8e063);
   }
   
   .tool-button:hover {
-    background-color: #0062cc;
+    opacity: 0.8;
+  }
+  
+  #clear-button:hover {
+    background: linear-gradient(to bottom right, #a8e063, #56ab2f);
   }
   
   .color-container {
@@ -53,6 +57,7 @@
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s ease;
+    cursor: pointer;
   }
   
   .color-button:hover {
@@ -83,7 +88,9 @@
   .color-button.active .indicator {
     opacity: 1;
   }
-  
+  .color-button.black {
+    background-color: #000;
+  }
   .color-button.red {
     background-color: #f44336;
   }

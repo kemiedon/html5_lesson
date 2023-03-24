@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Board</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="css/drawboard.css">
+
+</head>
+
+<body>
+    <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="tool-container">
+        <button class="tool-button" id="clear-button"><i class="fa-regular fa-trash-can"></i> 清除</button>
+        <div class="color-container">
+            <div class="color-button black active"></div>
+            <div class="color-button red "></div>
+            <div class="color-button blue"></div>
+            <div class="color-button green"></div>
+            <div class="color-button yellow"></div>
+            <div class="color-button orange"></div>
+            <div class="color-button purple"></div>
+            <div class="color-button gray"></div>
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="js/drawboard.js"></script>
+</body>
+
+</html>

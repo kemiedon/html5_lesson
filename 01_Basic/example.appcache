@@ -1,0 +1,11 @@
+CACHE MANIFEST
+
+CACHE:
+index.html
+styles.css
+
+NETWORK:
+http://code.jquery.com/jquery-1.11.2.min.js
+
+FALLBACK:
+/ fallback.html

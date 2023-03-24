@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microdata練習</title>
+    
+</head>
+
+<body>
+    <div itemscope itemtype="http://schema.org/Product">
+        <h1 class="name" itemprop="name">時尚牛仔褲</h1>
+        <img class="image" itemprop="image" src="product-image.jpg" alt="Product image">
+        <p class="description" itemprop="description">這是一條時尚的牛仔褲，適合在任何場合穿著。</p>
+        <span class="brand" itemprop="brand">Levi's</span>
+        <span class="offers" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <span class="price" itemprop="price">1999</span>
+            <meta class="priceCurrency" itemprop="priceCurrency" content="TWD" />
+            <link itemprop="availability" href="http://schema.org/InStock" />
+        </span>
+        <span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <span class="ratingValue" itemprop="ratingValue">4.5</span>
+            <span class="reviewCount" itemprop="reviewCount">50</span>
+        </span>
+    </div>
+</body>
+
+</html>

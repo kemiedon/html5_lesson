@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練習使用localStorage</title>
+</head>
+<body>
+    <input type="text" id="myInput">
+  <button onclick="saveData()">Save</button>
+  <script>
+    function saveData() {
+      var data = document.getElementById("myInput").value;
+      localStorage.setItem("myData", data);
+      alert("Data saved.");
+    }
+
+    var savedData = localStorage.getItem("myData");
+    if (savedData) {
+      alert("Saved data: " + savedData);
+    }
+  </script>
+</body>
+</html>

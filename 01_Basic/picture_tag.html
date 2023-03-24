@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練習圖片標籤</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <picture>
+        <source srcset="media/banner_pc.jpg" media="(min-width: 1200px)">
+        <source srcset="media/banner_tablet.jpg" media="(min-width: 768px)">
+        <source srcset="media/banner_phone.jpg">
+        <img src="media/banner_pc.jpg" alt="A beautiful image">
+      </picture>
+</body>
+</html>

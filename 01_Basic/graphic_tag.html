@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖形標籤練習</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="200" height="100"></canvas>
+    <svg width="100" height="100">
+        <rect x="10" y="10" width="80" height="80" style="fill:blue;stroke:pink;stroke-width:5;opacity:0.5" />
+      </svg>
+      <meter value="75" min="0" max="100">75%</meter>
+      <progress value="50" max="100"></progress>
+      <figure>
+        <img src="media/banner_phone.jpg" alt="Example Image">
+        <figcaption>這是一杯麥片</figcaption>
+      </figure>
+      <img src="media/map.png" usemap="#exampleMap">
+      <map name="exampleMap">
+        <area shape="rect" coords="0,0,400,130" target="_blank" href="https://www.darren0322.com/blog/post/62303521">
+      </map>
+
+<script>
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#FF0000";
+  ctx.fillRect(0, 0, 150, 75);
+</script>
+</body>
+</html>

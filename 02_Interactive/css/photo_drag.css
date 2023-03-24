@@ -1,0 +1,75 @@
+#photo-area {
+    width: 1000px;
+    height: 600px;
+    border: 1px solid black;
+    position: relative;
+    margin: 100px auto;
+
+}
+
+.photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid black;
+    background-color: white;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    cursor: move;
+}
+
+
+.photo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.ui-resizable-handle {
+    background: black;
+    border: 1px solid white;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    z-index: 9999;
+}
+
+.ui-resizable-nw {
+    top: -4px;
+    left: -4px;
+    cursor: nwse-resize;
+}
+
+.ui-resizable-ne {
+    top: -4px;
+    right: -4px;
+    cursor: nesw-resize;
+}
+
+.ui-resizable-se {
+    bottom: -4px;
+    right: -4px;
+    cursor: nwse-resize;
+}
+
+.ui-resizable-sw {
+    bottom: -4px;
+    left: -4px;
+    cursor: nesw-resize;
+}
+
+/* 拖放區域的樣式 */
+#drop-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    border: 2px dashed #999;
+    text-align: center;
+    line-height: 200px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+}
