@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練習使用Ajax</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="col-md-9 mx-auto py-5">
+        <form id="fruitForm">
+            <label for="fruit">查詢庫存:</label>
+            <select name="fruit" id="fruit">
+                <option value="1">蘋果</option>
+                <option value="2">香蕉</option>
+                <option value="3">橘子</option>
+                <option value="4">草莓</option>
+                <option value="5">葡萄</option>
+            </select>
+            <input type="submit" value="送出">
+        </form>
+        <div id="output"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#fruitForm").submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "post_success.php",
+                    type: "POST",
+                    data: {fruit_id: $('#fruit').val()},
+                    success: function(response) {
+                        // 在此處處理成功的情況
+                        console.log(response);
+                        $("#output").html(`<h3>價格:${response.price}</h3><h3>庫存量:${response.stocks}</h3>`);
+                    },
+                    error: function(xhr, status, error) {
+                        // 在此處處理錯誤情況
+                        console.log("Error: " + error);
+                    }
+                });
+            });
+            
+            
+        });
+    </script>
+</body>
+
+</html>

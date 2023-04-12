@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Storage Example with jQuery</title>
+    
+</head>
+<body>
+    <h1>Session Storage Example with jQuery</h1>
+    <input type="text" id="username" placeholder="Enter your username">
+    <button id="save">儲存 Session Storage</button>
+    <button id="retrieve">讀取 Session Storage</button>
+    <button id="remove">移除 Session Storage</button>
+    <p id="message"></p>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const $usernameInput = $('#username');
+            const $saveButton = $('#save');
+            const $retrieveButton = $('#retrieve');
+            const $removeButton = $('#remove');
+            const $message = $('#message');
+
+            $saveButton.on('click', () => {
+                const username = $usernameInput.val();
+                sessionStorage.setItem('username', username);
+                $message.text('Username saved to Session Storage.');
+            });
+
+            $retrieveButton.on('click', () => {
+                const username = sessionStorage.getItem('username');
+                if (username) {
+                    $message.text(`Retrieved username from Session Storage: ${username}`);
+                } else {
+                    $message.text('No username found in Session Storage.');
+                }
+            });
+
+            $removeButton.on('click', () => {
+                sessionStorage.removeItem('username');
+                $message.text('Username removed from Session Storage.');
+            });
+        });
+    </script>
+</body>
+</html>
