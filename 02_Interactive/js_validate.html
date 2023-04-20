@@ -81,8 +81,9 @@
                 });
 
                 // 如果表單驗證通過，則提交表單
+                console.log(isValid)
                 if (isValid) {
-                    $(this).submit();
+                    window.location.href = 'success.html';
                 }
             });
         });

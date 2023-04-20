@@ -3,10 +3,13 @@
     height: 600px;
     border: 1px solid black;
     position: relative;
-    margin: 100px auto;
+    margin: 30px auto;
 
 }
-
+.container{
+    width: 1000px;
+    margin: auto;
+}
 .photo {
     position: absolute;
     top: 0;
@@ -72,4 +75,19 @@
     font-weight: bold;
     color: #999;
     cursor: pointer;
+}
+#download{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    width: 100px;
+    height: 50px;
+    border: 1px solid rgb(78, 167, 230);
+    background-color: rgb(29, 122, 179);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+    
 }
