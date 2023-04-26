@@ -21,56 +21,56 @@ $(document).ready(function () {
             var reader = new FileReader();
             reader.onload = function (e) {
                 // 建立圖片元素，設定拖放效果的初始樣式
-                var photo = $("<div>").addClass("photo");
+                // var photo = $("<div>").addClass("photo");
 
-                var img = $("<img>").attr("src", e.target.result);
-                photo.append(img);
+                // var img = $("<img>").attr("src", e.target.result);
+                // photo.append(img);
 
                 // 將圖片元素加入照片區域
-                photoArea.append(photo);
+                photoArea.append(`<div class="photo"><img src="${e.target.result}"></div>`);
 
                 // 設定圖片元素的拖放效果
-                photo.draggable({
-                    containment: "#photo-area",
-                    stack: ".photo",
-                    cursor: "move"
-                }).resizable({
-                    handles: "nw, ne, se, sw",
-                    minWidth: 100,
-                    minHeight: 100,
-                    aspectRatio: true,
-                    resize: function (event, ui) {
-                        // 判斷圖片是否超出photoArea範圍，若超出則調整大小至最大
-                        var photoAreaWidth = photoArea.width();
-                        var photoAreaHeight = photoArea.height();
-                        var photoWidth = ui.size.width;
-                        var photoHeight = ui.size.height;
-                        if (photoWidth > photoAreaWidth) {
-                            ui.size.width = photoAreaWidth;
-                            ui.size.height = photoAreaWidth / ui.originalSize
-                                .width * ui.originalSize.height;
-                        }
-                        if (photoHeight > photoAreaHeight) {
-                            ui.size.width = photoAreaHeight / ui.originalSize
-                                .height * ui.originalSize.width;
-                            ui.size.height = photoAreaHeight;
-                        }
-                    }
-                });
+                // photo.draggable({
+                //     containment: "#photo-area",
+                //     stack: ".photo",
+                //     cursor: "move"
+                // }).resizable({
+                //     handles: "nw, ne, se, sw",
+                //     minWidth: 100,
+                //     minHeight: 100,
+                //     aspectRatio: true,
+                //     resize: function (event, ui) {
+                //         // 判斷圖片是否超出photoArea範圍，若超出則調整大小至最大
+                //         var photoAreaWidth = photoArea.width();
+                //         var photoAreaHeight = photoArea.height();
+                //         var photoWidth = ui.size.width;
+                //         var photoHeight = ui.size.height;
+                //         if (photoWidth > photoAreaWidth) {
+                //             ui.size.width = photoAreaWidth;
+                //             ui.size.height = photoAreaWidth / ui.originalSize
+                //                 .width * ui.originalSize.height;
+                //         }
+                //         if (photoHeight > photoAreaHeight) {
+                //             ui.size.width = photoAreaHeight / ui.originalSize
+                //                 .height * ui.originalSize.width;
+                //             ui.size.height = photoAreaHeight;
+                //         }
+                //     }
+                // });
 
-                // 設定拖放元素的z-index，使其在拖放時總是處於最上層
-                photo.on("mousedown", function () {
-                    $(this).css("z-index", 9999);
-                });
-                // 當圖片載入完成後，獲取圖片寬高並設定到photo上
-                img.on("load", function () {
-                    var width = img.width();
-                    var height = img.height();
-                    photo.css({
-                        "width": width + "px",
-                        "height": height + "px"
-                    });
-                });
+                // // 設定拖放元素的z-index，使其在拖放時總是處於最上層
+                // photo.on("mousedown", function () {
+                //     $(this).css("z-index", 9999);
+                // });
+                // // 當圖片載入完成後，獲取圖片寬高並設定到photo上
+                // img.on("load", function () {
+                //     var width = img.width();
+                //     var height = img.height();
+                //     photo.css({
+                //         "width": width + "px",
+                //         "height": height + "px"
+                //     });
+                // });
             };
 
             reader.readAsDataURL(file);

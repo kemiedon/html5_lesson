@@ -28,10 +28,7 @@
     border: 2px solid #333;
     border-radius: 50%;
     background-size: 1280px 852px;
-    background-position: -640px -426px ;
     background-repeat: no-repeat;
-    pointer-events: none;
-    cursor: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     z-index: 999;
 }

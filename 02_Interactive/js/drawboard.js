@@ -6,8 +6,7 @@ $(function () {
     var lastX, lastY;
     var color = '#000';
 
-    // 獲取上下文
-    var ctx = canvas.getContext('2d');
+
 
     // 設定canvas寬度與高度
     canvas.width = $('#canvas').outerWidth();
@@ -18,7 +17,6 @@ $(function () {
         isDrawing = true;
         lastX = e.pageX - this.offsetLeft;
         lastY = e.pageY - this.offsetTop;
-        console.log(lastX);
     });
     // 清除事件
     $('#clear-button').click(function () {
@@ -41,15 +39,24 @@ $(function () {
         color = $(this).css('background-color');
     });
 
-
-    // 監聽滑鼠事件
-    $('#canvas').mousedown(function (e) {
-        // 當滑鼠按下時，開始繪製線條
-        isDrawing = true;
-        lastX = e.pageX - $("#canvas").offset().left;
-        lastY = e.pageY - $("#canvas").offset().top;
+    $('#canvas').mousemove(function (e) {
+        if (isDrawing){
+            drawLine(lastX, lastY, e.offsetX, e.offsetY);
+            lastX = e.offsetX;
+            lastY = e.offsetY;
+        }
+        
     });
-
-
+    // 畫線函數
+    function drawLine(x1, y1, x2, y2) {
+        ctx.beginPath();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        ctx.closePath();
+    }
 
 });

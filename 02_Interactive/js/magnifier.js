@@ -1,15 +1,15 @@
 $(document).ready(function () {
     // 獲取圖片容器和圖片元素
-    var imgContainer = $("#img-container");
-    var img = imgContainer.find("img");
+    
+    var img = $("#img-container").find("img");
 
     // 綁定滑鼠移入事件，顯示放大鏡
-    imgContainer.mouseenter(function () {
+    $("#img-container").mouseenter(function () {
         $("#magnifier").show();
     });
 
     // 綁定滑鼠移出事件，隱藏放大鏡
-    imgContainer.mouseleave(function () {
+    $("#img-container").mouseleave(function () {
         $("#magnifier").hide();
     });
     // 取得放大鏡寬高
@@ -17,11 +17,10 @@ $(document).ready(function () {
     var magnifierHeight = $("#magnifier").height();
         
     // 綁定滑鼠移動事件，移動放大鏡
-    imgContainer.mousemove(function (e) {
+    $("#img-container").mousemove(function (e) {
         // 計算滑鼠在圖片容器中的位置
-        var containerOffset = imgContainer.offset();
-        var mouseX = e.pageX - containerOffset.left;
-        var mouseY = e.pageY - containerOffset.top;
+        var mouseX = e.pageX - $("#img-container").offset().left;
+        var mouseY = e.pageY - $("#img-container").offset().top;
 
         // 計算放大鏡的位置
         var magnifierX = mouseX - magnifierWidth / 2;
