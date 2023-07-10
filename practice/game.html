@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>滑鼠水波紋效果</title>
+  <style>
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>滑鼠水波紋效果</h1>
+  <img src="https://picsum.photos/800/600" alt="圖片" id="img">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // 創建畫布元素
+      var canvas = $("<canvas>").appendTo("body");
+      var ctx = canvas[0].getContext("2d");
+
+      // 設置畫布大小
+      canvas.attr("width", $(window).width());
+      canvas.attr("height", $(window).height());
+
+      // 繪製水波紋
+      function drawRipple(x, y) {
+        var ripple = {
+          x: x,
+          y: y,
+          r: 0,
+          maxR: 100,
+          alpha: 1,
+          maxAlpha: 0.2,
+        };
+        ripples.push(ripple);
+
+        function animate() {
+          ripple.r += 2;
+          ripple.alpha -= 0.01;
+          if (ripple.alpha <= 0) {
+            ripples.shift();
+            return;
+          }
+
+          ctx.clearRect(0, 0, canvas.width(), canvas.height());
+          ctx.beginPath();
+          ctx.arc(ripple.x, ripple.y, ripple.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(0, 128, 255, " + ripple.alpha + ")";
+          ctx.fill();
+
+          window.requestAnimationFrame(animate);
+        }
+
+        animate();
+      }
+
+      // 監聽滑鼠事件
+      var ripples = [];
+      $("#img").on("click", function(e) {
+        var offset = $(this).offset();
+        var x = e.pageX - offset.left;
+        var y = e.pageY - offset.top;
+        drawRipple(x, y);
+      });
+
+      // 更新畫布大小
+      $(window).on("resize", function() {
+        canvas.attr("width", $(window).width());
+        canvas.attr("height", $(window).height());
+      });
+    });
+  </script>
+</body>
+</html>
